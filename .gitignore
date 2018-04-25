@@ -52,5 +52,5 @@ Mkfile.old
 dkms.conf
 
 # Build folder
-Debug/*
-Release/*
+Debug
+Release
