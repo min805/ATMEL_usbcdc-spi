@@ -41,11 +41,22 @@ void usb_sof_action(void)
 	ui_process(udd_get_frame_number());
 }
 
+void usb_cdc_rx_notify(uint8_t port)
+{
+	char rxChar;
+	rxChar = udi_cdc_getc();
+	udi_cdc_putc(rxChar);
+	udi_cdc_putc(',');
+}
+
+/********************************************************/
+
 #ifdef USB_DEVICE_LPM_SUPPORT
 void usb_suspend_lpm_action(void)
 {
 	ui_powerdown();
 }
+
 
 void usb_remotewakeup_lpm_disable(void)
 {

@@ -66,6 +66,11 @@ void usb_cdc_disable(uint8_t port);
  */
 void usb_sof_action(void);
 
+
+void usb_cdc_rx_notify(uint8_t port);
+
+
+
 /*! \brief Enters the application in low power mode
  * Callback called when USB host sets USB line in suspend state
  */

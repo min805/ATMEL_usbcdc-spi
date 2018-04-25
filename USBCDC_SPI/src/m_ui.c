@@ -45,7 +45,7 @@
  */
 
 #include <asf.h>
-#include "ui.h"
+#include "m_ui.h"
 
 #ifdef USB_DEVICE_LPM_SUPPORT
 /* Interrupt on "pin change" from push button to do wakeup on USB

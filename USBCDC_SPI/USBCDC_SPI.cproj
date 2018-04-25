@@ -663,12 +663,12 @@
     <Compile Include="src\m_usbcdc.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\m_ui.c">
+      <SubType>compile</SubType>
+    </Compile>
     <None Include="src\asf.h">
       <SubType>compile</SubType>
     </None>
-    <Compile Include="src\ASF\common\services\usb\class\cdc\device\example\samd21j18a_samd21_xplained_pro\ui.c">
-      <SubType>compile</SubType>
-    </Compile>
     <None Include="src\config\conf_sleepmgr.h">
       <SubType>compile</SubType>
     </None>

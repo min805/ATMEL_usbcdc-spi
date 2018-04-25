@@ -104,7 +104,8 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../src/ASF/common/services/usb/class/cdc/device/example/samd21j18a_samd21_xplained_pro/ui.c \
+../src/m_usbcdc.c \
+../src/m_ui.c \
 ../src/ASF/common/services/sleepmgr/samd/sleepmgr.c \
 ../src/ASF/common/services/usb/class/cdc/device/udi_cdc.c \
 ../src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.c \
@@ -130,7 +131,7 @@ C_SRCS +=  \
 ../src/ASF/sam0/utils/cmsis/samd21/source/system_samd21.c \
 ../src/ASF/sam0/utils/syscalls/gcc/syscalls.c \
 ../src/main.c \
-../src/uart_samd.c
+../src/m_uart.c
 
 
 PREPROCESSING_SRCS += 
@@ -140,7 +141,8 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-src/ASF/common/services/usb/class/cdc/device/example/samd21j18a_samd21_xplained_pro/ui.o \
+src/m_usbcdc.o \
+src/m_ui.o \
 src/ASF/common/services/sleepmgr/samd/sleepmgr.o \
 src/ASF/common/services/usb/class/cdc/device/udi_cdc.o \
 src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.o \
@@ -166,10 +168,11 @@ src/ASF/sam0/utils/cmsis/samd21/source/gcc/startup_samd21.o \
 src/ASF/sam0/utils/cmsis/samd21/source/system_samd21.o \
 src/ASF/sam0/utils/syscalls/gcc/syscalls.o \
 src/main.o \
-src/uart_samd.o
+src/m_uart.o
 
 OBJS_AS_ARGS +=  \
-src/ASF/common/services/usb/class/cdc/device/example/samd21j18a_samd21_xplained_pro/ui.o \
+src/m_usbcdc.o \
+src/m_ui.o \
 src/ASF/common/services/sleepmgr/samd/sleepmgr.o \
 src/ASF/common/services/usb/class/cdc/device/udi_cdc.o \
 src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.o \
@@ -195,10 +198,11 @@ src/ASF/sam0/utils/cmsis/samd21/source/gcc/startup_samd21.o \
 src/ASF/sam0/utils/cmsis/samd21/source/system_samd21.o \
 src/ASF/sam0/utils/syscalls/gcc/syscalls.o \
 src/main.o \
-src/uart_samd.o
+src/m_uart.o
 
 C_DEPS +=  \
-src/ASF/common/services/usb/class/cdc/device/example/samd21j18a_samd21_xplained_pro/ui.d \
+src/m_usbcdc.d \
+src/m_ui.d \
 src/ASF/common/services/sleepmgr/samd/sleepmgr.d \
 src/ASF/common/services/usb/class/cdc/device/udi_cdc.d \
 src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.d \
@@ -224,10 +228,11 @@ src/ASF/sam0/utils/cmsis/samd21/source/gcc/startup_samd21.d \
 src/ASF/sam0/utils/cmsis/samd21/source/system_samd21.d \
 src/ASF/sam0/utils/syscalls/gcc/syscalls.d \
 src/main.d \
-src/uart_samd.d
+src/m_uart.d
 
 C_DEPS_AS_ARGS +=  \
-src/ASF/common/services/usb/class/cdc/device/example/samd21j18a_samd21_xplained_pro/ui.d \
+src/m_usbcdc.d \
+src/m_ui.d \
 src/ASF/common/services/sleepmgr/samd/sleepmgr.d \
 src/ASF/common/services/usb/class/cdc/device/udi_cdc.d \
 src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.d \
@@ -253,7 +258,7 @@ src/ASF/sam0/utils/cmsis/samd21/source/gcc/startup_samd21.d \
 src/ASF/sam0/utils/cmsis/samd21/source/system_samd21.d \
 src/ASF/sam0/utils/syscalls/gcc/syscalls.d \
 src/main.d \
-src/uart_samd.d
+src/m_uart.d
 
 OUTPUT_FILE_PATH +=USBCDC_SPI.elf
 
@@ -325,7 +330,9 @@ LINKER_SCRIPT_DEP+=  \
 
 
 
-src/ASF/common/services/usb/class/cdc/device/example/samd21j18a_samd21_xplained_pro/%.o: ../src/ASF/common/services/usb/class/cdc/device/example/samd21j18a_samd21_xplained_pro/%.c
+
+
+src/%.o: ../src/%.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.2.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD21J18A__ -DDEBUG -DBOARD=SAMD21_XPLAINED_PRO -D__SAMD21J18A__ -DEXTINT_CALLBACK_MODE=true -DUDD_ENABLE -DARM_MATH_CM0PLUS=true -DUSART_CALLBACK_MODE=true -DUSB_DEVICE_LPM_SUPPORT  -I"../src" -I"../src/ASF/sam0/drivers/sercom/usart" -I"../src/ASF/sam0/utils" -I"../src/ASF/sam0/utils/header_files" -I"../src/ASF/sam0/utils/preprocessor" -I"../src/ASF/thirdparty/CMSIS/Include" -I"../src/ASF/thirdparty/CMSIS/Lib/GCC" -I"../src/ASF/common/utils" -I"../src/ASF/sam0/utils/cmsis/samd21/include" -I"../src/ASF/sam0/utils/cmsis/samd21/source" -I"../src/ASF/sam0/drivers/sercom" -I"../src/ASF/sam0/drivers/system" -I"../src/ASF/sam0/drivers/system/clock/clock_samd21_r21_da_ha1" -I"../src/ASF/sam0/drivers/system/clock" -I"../src/ASF/sam0/drivers/system/interrupt" -I"../src/ASF/sam0/drivers/system/interrupt/system_interrupt_samd21" -I"../src/ASF/sam0/drivers/system/pinmux" -I"../src/ASF/sam0/drivers/system/power" -I"../src/ASF/sam0/drivers/system/power/power_sam_d_r_h" -I"../src/ASF/sam0/drivers/system/reset" -I"../src/ASF/sam0/drivers/system/reset/reset_sam_d_r_h" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/services/usb/class/cdc/device" -I"../src/ASF/common/services/usb/class/cdc" -I"../src/ASF/common/services/usb/udc" -I"../src/ASF/sam0/drivers/usb" -I"../src/ASF/sam0/drivers/usb/usb_sam_d_r" -I"../src/ASF/sam0/drivers/usb/stack_interface" -I"../src/ASF/sam0/drivers/extint" -I"../src/ASF/sam0/drivers/port" -I"../src/ASF/common/services/usb" -I"../src/ASF/sam0/boards/samd21_xplained_pro" -I"../src/ASF/sam0/boards" -I"../src/ASF/common/boards" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return  -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -459,13 +466,6 @@ src/ASF/sam0/utils/cmsis/samd21/source/%.o: ../src/ASF/sam0/utils/cmsis/samd21/s
 	
 
 src/ASF/sam0/utils/syscalls/gcc/%.o: ../src/ASF/sam0/utils/syscalls/gcc/%.c
-	@echo Building file: $<
-	@echo Invoking: ARM/GNU C Compiler : 6.2.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD21J18A__ -DDEBUG -DBOARD=SAMD21_XPLAINED_PRO -D__SAMD21J18A__ -DEXTINT_CALLBACK_MODE=true -DUDD_ENABLE -DARM_MATH_CM0PLUS=true -DUSART_CALLBACK_MODE=true -DUSB_DEVICE_LPM_SUPPORT  -I"../src" -I"../src/ASF/sam0/drivers/sercom/usart" -I"../src/ASF/sam0/utils" -I"../src/ASF/sam0/utils/header_files" -I"../src/ASF/sam0/utils/preprocessor" -I"../src/ASF/thirdparty/CMSIS/Include" -I"../src/ASF/thirdparty/CMSIS/Lib/GCC" -I"../src/ASF/common/utils" -I"../src/ASF/sam0/utils/cmsis/samd21/include" -I"../src/ASF/sam0/utils/cmsis/samd21/source" -I"../src/ASF/sam0/drivers/sercom" -I"../src/ASF/sam0/drivers/system" -I"../src/ASF/sam0/drivers/system/clock/clock_samd21_r21_da_ha1" -I"../src/ASF/sam0/drivers/system/clock" -I"../src/ASF/sam0/drivers/system/interrupt" -I"../src/ASF/sam0/drivers/system/interrupt/system_interrupt_samd21" -I"../src/ASF/sam0/drivers/system/pinmux" -I"../src/ASF/sam0/drivers/system/power" -I"../src/ASF/sam0/drivers/system/power/power_sam_d_r_h" -I"../src/ASF/sam0/drivers/system/reset" -I"../src/ASF/sam0/drivers/system/reset/reset_sam_d_r_h" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/services/usb/class/cdc/device" -I"../src/ASF/common/services/usb/class/cdc" -I"../src/ASF/common/services/usb/udc" -I"../src/ASF/sam0/drivers/usb" -I"../src/ASF/sam0/drivers/usb/usb_sam_d_r" -I"../src/ASF/sam0/drivers/usb/stack_interface" -I"../src/ASF/sam0/drivers/extint" -I"../src/ASF/sam0/drivers/port" -I"../src/ASF/common/services/usb" -I"../src/ASF/sam0/boards/samd21_xplained_pro" -I"../src/ASF/sam0/boards" -I"../src/ASF/common/boards" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return  -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-src/%.o: ../src/%.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.2.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD21J18A__ -DDEBUG -DBOARD=SAMD21_XPLAINED_PRO -D__SAMD21J18A__ -DEXTINT_CALLBACK_MODE=true -DUDD_ENABLE -DARM_MATH_CM0PLUS=true -DUSART_CALLBACK_MODE=true -DUSB_DEVICE_LPM_SUPPORT  -I"../src" -I"../src/ASF/sam0/drivers/sercom/usart" -I"../src/ASF/sam0/utils" -I"../src/ASF/sam0/utils/header_files" -I"../src/ASF/sam0/utils/preprocessor" -I"../src/ASF/thirdparty/CMSIS/Include" -I"../src/ASF/thirdparty/CMSIS/Lib/GCC" -I"../src/ASF/common/utils" -I"../src/ASF/sam0/utils/cmsis/samd21/include" -I"../src/ASF/sam0/utils/cmsis/samd21/source" -I"../src/ASF/sam0/drivers/sercom" -I"../src/ASF/sam0/drivers/system" -I"../src/ASF/sam0/drivers/system/clock/clock_samd21_r21_da_ha1" -I"../src/ASF/sam0/drivers/system/clock" -I"../src/ASF/sam0/drivers/system/interrupt" -I"../src/ASF/sam0/drivers/system/interrupt/system_interrupt_samd21" -I"../src/ASF/sam0/drivers/system/pinmux" -I"../src/ASF/sam0/drivers/system/power" -I"../src/ASF/sam0/drivers/system/power/power_sam_d_r_h" -I"../src/ASF/sam0/drivers/system/reset" -I"../src/ASF/sam0/drivers/system/reset/reset_sam_d_r_h" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/services/usb/class/cdc/device" -I"../src/ASF/common/services/usb/class/cdc" -I"../src/ASF/common/services/usb/udc" -I"../src/ASF/sam0/drivers/usb" -I"../src/ASF/sam0/drivers/usb/usb_sam_d_r" -I"../src/ASF/sam0/drivers/usb/stack_interface" -I"../src/ASF/sam0/drivers/extint" -I"../src/ASF/sam0/drivers/port" -I"../src/ASF/common/services/usb" -I"../src/ASF/sam0/boards/samd21_xplained_pro" -I"../src/ASF/sam0/boards" -I"../src/ASF/common/boards" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return  -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

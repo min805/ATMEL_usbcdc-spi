@@ -47,8 +47,8 @@
 #include <asf.h>
 #include "conf_example.h"
 #include "m_uart.h"
-#include "main.h"
-#include "ui.h"
+#include "m_usbcdc.h"
+#include "m_ui.h"
 
 
 /* Structure for USART module connected to EDBG */

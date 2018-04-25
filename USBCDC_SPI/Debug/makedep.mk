@@ -2,7 +2,9 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-src\ASF\common\services\usb\class\cdc\device\example\samd21j18a_samd21_xplained_pro\ui.c
+src\m_usbcdc.c
+
+src\m_ui.c
 
 src\ASF\common\services\sleepmgr\samd\sleepmgr.c
 
@@ -54,5 +56,5 @@ src\ASF\sam0\utils\syscalls\gcc\syscalls.c
 
 src\main.c
 
-src\uart_samd.c
+src\m_uart.c
 

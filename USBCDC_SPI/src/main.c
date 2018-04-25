@@ -73,8 +73,8 @@ int main(void)
 	// The main loop manages only the power mode
 	// because the USB management is done by interrupt
 	while (true) {
-		usb_cdc_task();
-		//sleepmgr_enter_sleep();
+		//usb_cdc_task();
+		sleepmgr_enter_sleep();
 	}
 }
 
